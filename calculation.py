@@ -15,6 +15,7 @@ class MyWindow(QWidget):
 		
 		self.resize(640,480)
 		self.setWindowTitle('Calculation')
+		self.setFixedSize(640,480)
 		# self.window.setTitle('Calculation')
 		# self.a = str(random.randint(10,100))
 		# self.b = str(random.randint(1,10))
@@ -85,10 +86,15 @@ class MyWindow(QWidget):
 			else:
 				QMessageBox.information(self,'错误','很抱歉，回答错误！')
 		if self.text2.text() == '÷':
+			
+		
 			if answer == num1 / num2:
+					
 				QMessageBox.information(self,'正确','恭喜你，回答正确！')
 			else:
 				QMessageBox.information(self,'错误','很抱歉，回答错误！')
+
+	
 		self.set_numbers()
 		self.text_edit.setText('')
 
