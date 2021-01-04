@@ -12,7 +12,7 @@ class Test_Window(QMainWindow,Ui_cal_test.Ui_MainWindow):
         self.resize(640,480)
         self.setWindowTitle('口算模拟')
         # self.timer = QTimer()
-        self.counter = 0
+        
        
         self.symbol_n =['+','-','×','÷']
         self.symbol_m = ['symbol_1','symbol_2','symbol_3','symbol_4','symbol_5','symbol_6','symbol_7','symbol_8','symbol_9','symbol_10',
@@ -26,6 +26,7 @@ class Test_Window(QMainWindow,Ui_cal_test.Ui_MainWindow):
         self.set_symbol()
         self.set_numbers()
         self.Line_edit_empty()
+        
         self.btn_submit.clicked.connect(self.answer_config)
         # self.answer_config()
         self.btn_start.clicked.connect(self.start_config)
@@ -38,6 +39,8 @@ class Test_Window(QMainWindow,Ui_cal_test.Ui_MainWindow):
     
     def start_config(self):
         # self.timer.start(1000)
+        
+        self.counter = 0
         self.time1 = time.time()
         for i in range(20):
             exec("self.%s.setEnabled(True)" % self.answer_m[i])
@@ -89,7 +92,7 @@ class Test_Window(QMainWindow,Ui_cal_test.Ui_MainWindow):
             if len(eval("self.%s.text()" % self.answer_m[i])) == 0:
                 QMessageBox.warning(self,'有题目未答完','禁止提交!',QMessageBox.Yes|QMessageBox.Cancel)
                 break
-            elif eval("self.%s.text()" % self.answer_m[i]) != []:
+            else:
                 if eval('self.%s.text()' %self.symbol_m[i]) == '+':
                     S1 = int(eval("self.%s.text()" % self.num1_m[i]))
                     S2 = int(eval("self.%s.text()" % self.num2_m[i]))
@@ -121,10 +124,12 @@ class Test_Window(QMainWindow,Ui_cal_test.Ui_MainWindow):
         self.time_show = int(self.time2 - self.time1)
         self.score.setText(str(self.counter * 5))
         self.time_cost.setText(str(self.time_show)+'秒')
-        QMessageBox.information(self,'你的得分：', str(self.counter),QMessageBox.Yes|QMessageBox.Cancel)
+        QMessageBox.information(self,'你的得分：', self.score.text(),QMessageBox.Yes|QMessageBox.Cancel)
 
         for i in range(20):
             exec("self.%s.clear()" % self.answer_m[i])
+
+        self.start_config()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
