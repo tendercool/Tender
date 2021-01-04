@@ -128,8 +128,9 @@ class Test_Window(QMainWindow,Ui_cal_test.Ui_MainWindow):
 
         for i in range(20):
             exec("self.%s.clear()" % self.answer_m[i])
-
+        
         self.start_config()
+        self.Line_edit_empty()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
