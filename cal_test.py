@@ -12,8 +12,6 @@ class Test_Window(QMainWindow, Ui_cal_test.Ui_MainWindow):
         self.setupUi(self)
         self.resize(640, 480)
         self.setWindowTitle('口算模拟')
-        # self.timer = QTimer()
-
         self.symbol_n = ['+', '-', '×', '÷']
         self.symbol_m = [
             'symbol_1', 'symbol_2', 'symbol_3', 'symbol_4', 'symbol_5',
@@ -91,6 +89,15 @@ class Test_Window(QMainWindow, Ui_cal_test.Ui_MainWindow):
             exec("self.%s.setEnabled(True)" % self.answer_m[i])
         self.set_symbol()
         self.set_numbers()
+    
+    def set_default(self):
+        for i in range(20):
+            exec("self.%s.clear()" % self.answer_m[i])
+            exec("self.%s.setStyleSheet('QWidget { background-color:#FFFFFF;}')" % self.answer_m[i])
+        self.start_config()
+        self.Line_edit_empty()
+        self.btn_start.setEnabled(True)
+        self.btn_submit.setEnabled(False)
 
     def set_symbol(self):
         for i in self.symbol_m:
@@ -134,36 +141,42 @@ class Test_Window(QMainWindow, Ui_cal_test.Ui_MainWindow):
                     C = int((eval("self.%s.text()" % self.answer_m[i])))
                     if C == S1 + S2:
                         self.counter += 1
+                    else:
+                        exec("self.%s.setStyleSheet('QWidget { background-color:#8B0000;}')" % self.answer_m[i])
                 if eval('self.%s.text()' % self.symbol_m[i]) == '-':
                     S1 = int(eval("self.%s.text()" % self.num1_m[i]))
                     S2 = int(eval("self.%s.text()" % self.num2_m[i]))
                     C = int(eval("self.%s.text()" % self.answer_m[i]))
                     if C == S1 - S2:
                         self.counter += 1
+                    else:
+                        exec("self.%s.setStyleSheet('QWidget { background-color:#8B0000;}')" % self.answer_m[i])
                 if eval('self.%s.text()' % self.symbol_m[i]) == '×':
                     S1 = int(eval("self.%s.text()" % self.num1_m[i]))
                     S2 = int(eval("self.%s.text()" % self.num2_m[i]))
                     C = int(eval("self.%s.text()" % self.answer_m[i]))
                     if C == S1 * S2:
                         self.counter += 1
+                    else:
+                        exec("self.%s.setStyleSheet('QWidget { background-color:#8B0000;}')" % self.answer_m[i])
                 if eval('self.%s.text()' % self.symbol_m[i]) == '÷':
                     S1 = int(eval("self.%s.text()" % self.num1_m[i]))
                     S2 = int(eval("self.%s.text()" % self.num2_m[i]))
                     C = int(eval("self.%s.text()" % self.answer_m[i]))
                     if C == S1 / S2:
                         self.counter += 1
+                    else:
+                        exec("self.%s.setStyleSheet('QWidget { background-color:#990000;}')" % self.answer_m[i])
         self.time2 = time.time()
         self.time_show = int(self.time2 - self.time1)
         self.score.setText(str(self.counter * 5) + '分')
         self.time_cost.setText(str(self.time_show) + '秒')
         QMessageBox.information(self, '你的得分：', '得分： '+self.score.text(),
                                 QMessageBox.Yes | QMessageBox.Cancel)
-        for i in range(20):
-            exec("self.%s.clear()" % self.answer_m[i])
-        self.start_config()
-        self.Line_edit_empty()
-        self.btn_start.setEnabled(True)
-        self.btn_submit.setEnabled(False)
+        self.set_default()
+
+    
+        
 
 
 if __name__ == '__main__':
