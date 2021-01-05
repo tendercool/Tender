@@ -154,9 +154,9 @@ class Test_Window(QMainWindow, Ui_cal_test.Ui_MainWindow):
                         self.counter += 1
         self.time2 = time.time()
         self.time_show = int(self.time2 - self.time1)
-        self.score.setText(str(self.counter * 5))
+        self.score.setText(str(self.counter * 5) + '分')
         self.time_cost.setText(str(self.time_show) + '秒')
-        QMessageBox.information(self, '你的得分：', self.score.text(),
+        QMessageBox.information(self, '你的得分：', '得分： '+self.score.text()+'分',
                                 QMessageBox.Yes | QMessageBox.Cancel)
         for i in range(20):
             exec("self.%s.clear()" % self.answer_m[i])
