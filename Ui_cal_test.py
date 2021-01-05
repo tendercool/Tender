@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'g:\Python\git\Tender\cal_test.ui'
+# Form implementation generated from reading ui file 'g:\git\Tender-1\cal_test.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.1
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(931, 597)
+        MainWindow.resize(1274, 655)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
@@ -342,10 +342,16 @@ class Ui_MainWindow(object):
         self.num_2_10 = QtWidgets.QLabel(self.centralwidget)
         self.num_2_10.setObjectName("num_2_10")
         self.gridLayout.addWidget(self.num_2_10, 9, 2, 1, 1)
+        self.label_27 = QtWidgets.QLabel(self.centralwidget)
+        self.label_27.setObjectName("label_27")
+        self.gridLayout.addWidget(self.label_27, 8, 9, 1, 1)
+        self.label_28 = QtWidgets.QLabel(self.centralwidget)
+        self.label_28.setObjectName("label_28")
+        self.gridLayout.addWidget(self.label_28, 9, 9, 1, 1)
         self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 931, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1274, 23))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -440,3 +446,5 @@ class Ui_MainWindow(object):
         self.num_2_9.setText(_translate("MainWindow", "TextLabel"))
         self.symbol_10.setText(_translate("MainWindow", "TextLabel"))
         self.num_2_10.setText(_translate("MainWindow", "TextLabel"))
+        self.label_27.setText(_translate("MainWindow", "="))
+        self.label_28.setText(_translate("MainWindow", "="))
