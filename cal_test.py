@@ -40,7 +40,10 @@ class Test_Window(QMainWindow,Ui_cal_test.Ui_MainWindow):
     def start_config(self):
         # self.timer.start(1000)
         
-        self.counter = 0
+        self.plus_counter = 0
+        self.minu_counter = 0
+        self.add_counter = 0
+        self.div_counter = 0
         self.time1 = time.time()
         for i in range(20):
             exec("self.%s.setEnabled(True)" % self.answer_m[i])
@@ -98,29 +101,29 @@ class Test_Window(QMainWindow,Ui_cal_test.Ui_MainWindow):
                     S2 = int(eval("self.%s.text()" % self.num2_m[i]))
                     C = int((eval("self.%s.text()" % self.answer_m[i])))
                     if C == S1 + S2:
-                        self.counter += 1
+                        self.add_counter += 1
                 if eval('self.%s.text()' %self.symbol_m[i]) == '-':
                     S1 = int(eval("self.%s.text()" % self.num1_m[i]))
                     S2 = int(eval("self.%s.text()" % self.num2_m[i]))
                     C = int(eval("self.%s.text()" % self.answer_m[i]))
                     if C == S1 - S2:
-                        self.counter += 1
+                        self.minu_counter += 1
                 if eval('self.%s.text()' %self.symbol_m[i]) == '×':
                     S1 = int(eval("self.%s.text()" % self.num1_m[i]))
                     S2 = int(eval("self.%s.text()" % self.num2_m[i]))
                     C = int(eval("self.%s.text()" % self.answer_m[i]))
                     if C == S1 - S2:
-                        self.counter += 1
+                        self.plus_counter += 1
                 if eval('self.%s.text()' %self.symbol_m[i]) == '÷':
                     S1 = int(eval("self.%s.text()" % self.num1_m[i]))
                     S2 = int(eval("self.%s.text()" % self.num2_m[i]))
                     C = int(eval("self.%s.text()" % self.answer_m[i]))
                     if C == S1 - S2:
-                        self.counter += 1
+                        self.div_counter += 1
 
         self.time2 = time.time()
         
-
+        self.counter = self.div_counter + self.minu_counter + self.add_counter + self.plus_counter
         self.time_show = int(self.time2 - self.time1)
         self.score.setText(str(self.counter * 5))
         self.time_cost.setText(str(self.time_show)+'秒')
